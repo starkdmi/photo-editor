@@ -25,6 +25,7 @@ extension PhotoEditorViewController: UITextViewDelegate {
         lastTextViewTransCenter = textView.center
         lastTextViewFont = textView.font!
         activeTextView = textView
+        colorsCollectionView.isHidden = false
         textView.superview?.bringSubviewToFront(textView)
         textView.font = UIFont(name: "Helvetica", size: 30)
         UIView.animate(withDuration: 0.3,
@@ -53,6 +54,9 @@ extension PhotoEditorViewController: UITextViewDelegate {
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
+            activeTextView = nil
+            isTyping = false
+            colorsCollectionView.isHidden = true
             return false
         }
         return true
